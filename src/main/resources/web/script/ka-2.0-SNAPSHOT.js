@@ -45,8 +45,6 @@ var kiezatlas = new function() {
 
     /** initializes an interactive citymap view */
     this.render_mobile_city_map_view = function () {
-        // set tmp page title
-        kiezatlas.render_mobile_info_title("Fotowettbewerb des Kinder- und Jugendparlaments");
         // check if, and if not, initialize leaflet
         if (kiezatlas.map == undefined) {
             // console.log(" map is not initialized.. initializing..")
@@ -57,6 +55,8 @@ var kiezatlas = new function() {
         kiezatlas.load_geomap_objects(kiezatlas.city_map_id);
         kiezatlas.setup_leaflet_markers(true) // all L.LatLng()s are constructed here
         kiezatlas.render_leaflet_container(true)
+        // set tmp page title
+        kiezatlas.render_mobile_info_title("Fotowettbewerb des Kinder- und Jugendparlaments");
         // ask for users location
         // kiezatlas.ask_users_location()
     }
@@ -135,15 +135,14 @@ var kiezatlas = new function() {
 
     this.render_object_title = function (object) {
         return '<div id="' + object.id+ '" onclick="kiezatlas.on_bubble_click(this)" class="topic-name item">'
-            + '<b>' + object.value
-            + '&nbsp;&rsaquo;&rsaquo;&rsaquo;</b></div>';
+            + '<b>Foto zu diesem Ort&nbsp;&rsaquo;&rsaquo;&rsaquo;<br/>(' + object.value + ')</b></div>';
             // <br/>.. mehr Infos dazu
             // <br/><img class="more" src="css/read_more_plus.png">
     }
 
     this.render_mobile_info_title = function(newTitle) {
         $(".my-title").html(newTitle)
-        // window.document.title = newTitle + " 1.0"
+        window.document.title = newTitle + " 1.0"
     }
 
     this.render_mobile_info_body = function (object) {

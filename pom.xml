@@ -32,6 +32,16 @@
             <artifactId>eduzen-reviews</artifactId>
             <version>0.3</version>
         </dependency>
+        <!-- dependency>
+            <groupId>de.deepamehta</groupId>
+            <artifactId>kiezatlas</artifactId>
+            <version>2.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>de.deepamehta</groupId>
+            <artifactId>deepamehta-images</artifactId>
+            <version>0.9</version>
+        </dependency-->
     </dependencies>
 
     <repositories>
