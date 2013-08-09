@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="/de.kiezatlas.new-maps/script/leaflet/dist/leaflet.css"/>
     <link rel="stylesheet" href="/de.kiezatlas.new-maps/css/sitestyle.css"/>
 
+    <script src="/de.deepamehta.webclient/script/util/js_utils.js"></script>
     <script src="/de.kiezatlas.new-maps/script/ka-2.0-SNAPSHOT.js"></script>
     <script src="/de.kiezatlas.new-maps/script/jquery-1.9.1.min.js"></script>
     <script type="text/javascript">
@@ -64,7 +65,7 @@
 
                     } else if (fromPage.indexOf("citymaps-page") == -1) {
 
-                        kiezatlas.render_mobile_city_view()
+                        kiezatlas.render_mobile_city_map_view()
                     } else {
 
                         kiezatlas.render_mobile_city_map_view()
@@ -82,7 +83,8 @@
                 // this is just here because initially, no "pagechange" is fired by jqm
                 // kiezatlas.loadPublishedMobileCityMaps()
                 // kiezatlas.renderMobileCityMapList(kiezatlas.publishedMaps)
-                console.log("initial request ..")
+                kiezatlas.render_mobile_city_map_view()
+                js.set_cookie("dm4_topicmap_id", kiezatlas.city_map_id)
             }
 
         });

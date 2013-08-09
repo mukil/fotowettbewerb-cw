@@ -43,7 +43,8 @@ var kiezatlas = new function() {
     this.historyApiSupported = window.history.pushState;
     this.panorama = undefined; // currently unused: gui helper flag
 
-    /** initializes an interactive citymap view */
+    /** initializes an interactive citymap view
+     *  fixme: fails if there is just 1 element in the geomap result */
     this.render_mobile_city_map_view = function () {
         // check if, and if not, initialize leaflet
         if (kiezatlas.map == undefined) {
@@ -146,8 +147,6 @@ var kiezatlas = new function() {
     }
 
     this.render_mobile_info_body = function (object) {
-        // fixme:
-        console.log(object)
         var infoHeader = '<div id="info-table">';
             infoHeader += '<h3 class="title">' + object.value + '</h3></div>';
         var address = ""
