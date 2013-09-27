@@ -135,10 +135,9 @@ var kiezatlas = new function() {
     }
 
     this.render_object_title = function (object) {
+        var full_topic = kiezatlas.load_object_info(object.id)
         return '<div id="' + object.id+ '" onclick="kiezatlas.on_bubble_click(this)" class="topic-name item">'
-            + '<b>Foto zu diesem Ort&nbsp;&rsaquo;&rsaquo;&rsaquo;<br/>(' + object.value + ')</b></div>';
-            // <br/>.. mehr Infos dazu
-            // <br/><img class="more" src="css/read_more_plus.png">
+            + '<b>' + full_topic.value + '&nbsp;&rsaquo;&rsaquo;&rsaquo;</b></div>';
     }
 
     this.render_mobile_info_title = function(newTitle) {
@@ -261,7 +260,7 @@ var kiezatlas = new function() {
 
     this.add_review_good = function (event) {
         var id = event.target.id.substr(5);
-        var url = kiezatlas.application_url + "/review/good/" + id;
+        var url = "/review/good/" + id;
         jQuery.ajax({
             type: "GET", async: true,
                 url: url, dataType: 'json',
@@ -288,7 +287,7 @@ var kiezatlas = new function() {
 
     this.add_review_soso = function (event) {
         var id = event.target.id.substr(8);
-        var url = kiezatlas.application_url + "/review/soso/" + id;
+        var url = "/review/soso/" + id;
         jQuery.ajax({
             type: "GET", async: true,
                 url: url, dataType: 'json',
@@ -314,7 +313,8 @@ var kiezatlas = new function() {
     }
 
     this.load_object_info = function (topicId, render_function) {
-        var url = kiezatlas.application_url + "/geomap/topic/" + topicId + "?fetch_composite=true";
+        var url = "/geomap/topic/" + topicId + "?fetch_composite=true";
+        var response = undefined
         jQuery.ajax({
             type: "GET", async: false,
                 url: url, dataType: 'json',
@@ -322,20 +322,23 @@ var kiezatlas = new function() {
                 xhr.setRequestHeader("Content-Type", "application/json")
             },
             success: function(obj) {
-                //
-                kiezatlas.set_map_topic(obj)
-                render_function(obj)
-                return null
+                if (typeof render_function !== 'undefined') {
+                    //
+                    kiezatlas.set_map_topic(obj)
+                    render_function(obj)
+                }
+                response = obj
             },
             error: function(x, s, e) {
                 throw new Error('ERROR: detailed information on this point could not be loaded. please try again.' + x)
             }
         })
+        return response
     }
 
     /** requests and sets all geobjects of the loaded map to kiezatlas.mapTopics **/
     this.load_geomap_objects = function (mapId, handler) {
-        var url = kiezatlas.application_url + "/geomap/" + mapId;
+        var url = "/geomap/" + mapId;
         // var body = '{"method": "getMapTopics", "params": ["' + mapId+ '" , "' + workspaceId + '"]}';
         jQuery.ajax({
             type: "GET", async: false,

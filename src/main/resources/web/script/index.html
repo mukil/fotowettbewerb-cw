@@ -36,9 +36,9 @@
             //
             kiezatlas.set_application_url("http://localhost:8080")
             // Fotowettbewerb Geomap ID
-            kiezatlas.city_map_id = 2836
+            kiezatlas.city_map_id = 2836 // 2911
             // Facets to show on our site
-            kiezatlas.object_facet_uri = "domain.project.topic_type_3044"
+            kiezatlas.object_facet_uri = "domain.project.topic_type_3044" // domain.project.topic_type_3643
 
             /** This is basically our primitive routing implementation of the webapp **/
             $(document).on("pagechange", function(event, data) {
@@ -73,7 +73,7 @@
 
                 } else if (toPage.indexOf("info") != -1) {
 
-                    console.log("going to detail view...")
+                    // console.log("going to detail view...")
                 }
             })
 
@@ -116,7 +116,9 @@
 
         <div data-role="header" data-theme="b">
             <!--a target="_blank" href="http://m.kiezatlas.de/ehrenamt" data-icon="home">&nbsp;</a-->
-            <!-- a class="back" href="#citymaps-page" data-transition="slidefade" data-icon="back">&nbsp;</a-->
+            <a class="back" href="#citymaps-page" data-transition="flow" data-direction="reverse" data-icon="back">
+                Zur&uuml;ck
+            </a>
             <h1 class="my-title">Detailansicht</h1>
             <!-- a href="#" data-icon="bars">&nbsp;</a-->
             <div id="message-info" class="notification">Testnachricht..</div>
