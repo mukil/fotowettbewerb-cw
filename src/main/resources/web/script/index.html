@@ -39,6 +39,8 @@
             kiezatlas.city_map_id = 2836 // 2911
             // Facets to show on our site
             kiezatlas.object_facet_uri = "domain.project.topic_type_3044" // domain.project.topic_type_3643
+            // 
+            js.set_cookie("dm4_topicmap_id", kiezatlas.city_map_id)
 
             /** This is basically our primitive routing implementation of the webapp **/
             $(document).on("pagechange", function(event, data) {
@@ -84,7 +86,6 @@
                 // kiezatlas.loadPublishedMobileCityMaps()
                 // kiezatlas.renderMobileCityMapList(kiezatlas.publishedMaps)
                 kiezatlas.render_mobile_city_map_view()
-                js.set_cookie("dm4_topicmap_id", kiezatlas.city_map_id)
             }
 
         });
